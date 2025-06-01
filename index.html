@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tuba & Savaş Evleniyor</title>
+  <title>Tuba ❤️ Savaş Evleniyor</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
@@ -50,12 +50,22 @@
       border: 2px solid #333;
       box-shadow: 0 0 15px rgba(0,0,0,0.15);
     }
-    a {
-      display: inline-block;
-      margin-top: 15px;
+    .download-visible {
+      display: inline-block !important;
+    }
+    a#downloadLink {
+      display: none;
+      margin-top: 20px;
+      background-color: #d8c3a5;
+      color: #000;
+      padding: 12px 20px;
+      border-radius: 8px;
       text-decoration: none;
-      color: #8d6748;
       font-weight: bold;
+      border: 2px solid #8d6748;
+    }
+    a#downloadLink:hover {
+      background-color: #e4d3b8;
     }
   </style>
 </head>
@@ -69,11 +79,11 @@
     <br />
     <canvas id="invitationCanvas" width="768" height="1024" style="display:none;"></canvas>
     <br />
-    <a id="downloadLink" href="#" download="davetiye.jpg" style="display:none;">JPG Olarak İndir</a>
+    <a id="downloadLink" href="#" download="davetiye.jpg">📥 JPG Davetiyeyi İndir</a>
   </div>
 
   <script>
-    function generateInvitation() {
+    async function generateInvitation() {
       const name = document.getElementById('fullname').value.trim();
       if (!name) {
         alert('Lütfen davetli adını ve soyadını giriniz.');
@@ -83,7 +93,7 @@
       const canvas = document.getElementById('invitationCanvas');
       const ctx = canvas.getContext('2d');
       const image = new Image();
-      image.src = 'Davetiye-16.png';
+      image.src = 'DAVETİYE-16 (1).png';
 
       image.onload = function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -91,19 +101,16 @@
 
         ctx.textAlign = 'center';
         ctx.fillStyle = '#000000';
+        ctx.font = '36px "Great Vibes", cursive'; // daha küçük yazı boyutu
 
-        ctx.font = '58px "Great Vibes", cursive';
-        ctx.fillText("Sayın: " + name, canvas.width / 2, 120);
+        ctx.fillText("Sayın: " + name, canvas.width / 2, 625);
 
-        ctx.font = '42px "Great Vibes", cursive';
-        ctx.fillText("Sizi de aramızda görmek isteriz...", canvas.width / 2, 185);
-
-        document.getElementById('invitationCanvas').style.display = 'block';
+        canvas.style.display = 'block';
 
         const dataUrl = canvas.toDataURL('image/jpeg');
         const downloadLink = document.getElementById('downloadLink');
         downloadLink.href = dataUrl;
-        downloadLink.style.display = 'inline-block';
+        downloadLink.classList.add('download-visible');
       };
     }
   </script>
