@@ -7,8 +7,6 @@
   <title>Tuba & Savaş Evleniyor</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
     body {
       font-family: 'Segoe UI', sans-serif;
       background: #f4f1eb;
@@ -92,15 +90,13 @@
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
         ctx.textAlign = 'center';
-        ctx.fillStyle = 'black';
+        ctx.fillStyle = '#000000';
 
-        // "Sayın: Ad Soyad"
-        ctx.font = '36px "Great Vibes", cursive';
-        ctx.fillText("Sayın: " + name, canvas.width / 2, 80);
+        ctx.font = '58px "Great Vibes", cursive';
+        ctx.fillText("Sayın: " + name, canvas.width / 2, 120);
 
-        // Alt satır mesaj daha küçük
-        ctx.font = '28px "Great Vibes", cursive';
-        ctx.fillText("Sizi de aramızda görmek isteriz...", canvas.width / 2, 130);
+        ctx.font = '42px "Great Vibes", cursive';
+        ctx.fillText("Sizi de aramızda görmek isteriz...", canvas.width / 2, 185);
 
         document.getElementById('invitationCanvas').style.display = 'block';
 
