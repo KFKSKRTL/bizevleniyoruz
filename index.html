@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tuba & Savaş Evleniyor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f1eb;
+      text-align: center;
+      padding: 30px;
+    }
+    .container {
+      max-width: 550px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: 0 0 18px rgba(0,0,0,0.12);
+      border: 2px dashed #555;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      font-size: 16px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #8d6748;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #73543a;
+    }
+    canvas {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 12px;
+      border: 2px solid #333;
+      box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    }
+    a {
+      display: inline-block;
+      margin-top: 15px;
+      text-decoration: none;
+      color: #8d6748;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Tuba ❤️ Savaş Evleniyor</h2>
+    <p>Lütfen davetli adı ve soyadını yazınız:</p>
+    <input type="text" id="fullname" placeholder="Adınız Soyadınız" />
+    <br />
+    <button onclick="generateInvitation()">Davetiye Oluştur</button>
+    <br />
+    <canvas id="invitationCanvas" width="768" height="1024" style="display:none;"></canvas>
+    <br />
+    <a id="downloadLink" href="#" download="davetiye.jpg" style="display:none;">JPG Olarak İndir</a>
+  </div>
+
+  <script>
+    function generateInvitation() {
+      const name = document.getElementById('fullname').value.trim();
+      if (!name) {
+        alert('Lütfen davetli adını ve soyadını giriniz.');
+        return;
+      }
+
+      const canvas = document.getElementById('invitationCanvas');
+      const ctx = canvas.getContext('2d');
+      const image = new Image();
+      image.src = 'DAVETİYE-12.png';
+
+      image.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        ctx.textAlign = 'center';
+        ctx.fillStyle = 'black';
+
+        // "Sayın: Ad Soyad"
+        ctx.font = '36px "Great Vibes", cursive';
+        ctx.fillText("Sayın: " + name, canvas.width / 2, 80);
+
+        // Alt satır mesaj daha küçük
+        ctx.font = '28px "Great Vibes", cursive';
+        ctx.fillText("Sizi de aramızda görmek isteriz...", canvas.width / 2, 130);
+
+        document.getElementById('invitationCanvas').style.display = 'block';
+
+        const dataUrl = canvas.toDataURL('image/jpeg');
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = dataUrl;
+        downloadLink.style.display = 'inline-block';
+      };
+    }
+  </script>
+</body>
+</html>
